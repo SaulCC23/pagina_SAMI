@@ -1,70 +1,140 @@
-# Getting Started with Create React App
+<div align="center">
+  <img src="../frontend/assets/ITM.png" alt="Logo ITM" width="140"/>
+</div>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h1 align="center">🌌 SAMI – Sistema de Análisis y Monitoreo de Impacto</h1>
 
-## Available Scripts
+<p align="center">
+  <em>Plataforma web para recopilar, analizar y visualizar la participación estudiantil en ferias educativas</em>
+</p>
 
-In the project directory, you can run:
+---
 
-### `npm start`
+<p align="center">
+  <img src="https://img.shields.io/badge/Frontend-React-61DAFB?style=for-the-badge&logo=react&logoColor=white" alt="React Badge"/>
+  <img src="https://img.shields.io/badge/Backend-Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white" alt="Node Badge"/>
+  <img src="https://img.shields.io/badge/API-Express.js-000000?style=for-the-badge&logo=express&logoColor=white" alt="Express Badge"/>
+  <img src="https://img.shields.io/badge/Database-MySQL-00618A?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL Badge"/>
+  <img src="https://img.shields.io/badge/Charts-Recharts-7C3AED?style=for-the-badge&logo=recharts&logoColor=white" alt="Recharts Badge"/>
+</p>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🚀 Descripción general
 
-### `npm test`
+**SAMI (Sistema de Análisis y Monitoreo de Impacto)** es una plataforma web que recopila datos de participación estudiantil en ferias educativas.  
+Conecta con un **Raspberry Pi** equipado con cámara e IA básica para clasificar asistentes (masculino/femenino) y descartar mayores de edad.  
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Los datos son enviados automáticamente al sistema web, almacenados en **MySQL** y visualizados mediante un **Dashboard profesional** con tablas y gráficas dinámicas.
 
-### `npm run build`
+> 💡 *Su propósito es apoyar la evaluación del impacto de eventos educativos a nivel medio superior.*
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🧠 Funcionalidades principales
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- 📊 **Panel de control dinámico** con gráficas y estadísticas de participación.  
+- 🧾 **Gestión de eventos:** nombre, fecha, ubicación y descripción.  
+- 👥 **Conteo automático** de participantes (total, hombres, mujeres).  
+- 💾 **Conexión directa a MySQL** mediante API REST.  
+- 🖥️ **Diseño profesional y responsivo** (sin Tailwind, con CSS puro).  
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🧩 Estructura del proyecto
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+pagina_SAMI/
+├── backend/
+│   └── server.js              # API REST con Node.js + Express + MySQL
+│
+├── frontend/
+│   ├── public/
+│   │   └── index.html
+│   ├── src/
+│   │   ├── components/        # Componentes visuales del dashboard
+│   │   ├── services/          # Conexión Axios al backend
+│   │   ├── styles/            # Estilos CSS personalizados
+│   │   └── index.jsx          # Página principal
+│   └── assets/
+│       └── ITM.png            # Logotipo del ITM
+│
+└── README.md
+⚙️ Instalación y ejecución
+🧩 Clona el proyecto
+bash
+Copiar código
+git clone https://github.com/SaulCC23/pagina_SAMI.git
+cd pagina_SAMI
+⚙️ Configura el backend
+bash
+Copiar código
+cd backend
+npm install
+node server.js
+🗄️ Asegúrate de tener XAMPP corriendo con MySQL y la base de datos sami creada.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+💻 Inicia el frontend
+bash
+Copiar código
+cd ../frontend
+npm install
+npm start
+Accede en: 👉 http://localhost:3000
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+🗃️ Estructura de la base de datos (MySQL)
+sql
+Copiar código
+CREATE DATABASE sami;
 
-## Learn More
+CREATE TABLE eventos (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nombre VARCHAR(100) NOT NULL,
+  fecha DATE NOT NULL,
+  ubicacion VARCHAR(100),
+  descripcion TEXT
+);
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+CREATE TABLE estadisticas (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  evento_id INT NOT NULL,
+  total_participantes INT DEFAULT 0,
+  hombres INT DEFAULT 0,
+  mujeres INT DEFAULT 0,
+  FOREIGN KEY (evento_id) REFERENCES eventos(id) ON DELETE CASCADE
+);
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+🧩 Tecnologías clave
+Tipo	Tecnología	Uso principal
+🖥️ Frontend	React + CSS	Interfaz visual y componentes
+⚙️ Backend	Node.js + Express	API REST y conexión a MySQL
+🗄️ Base de datos	MySQL	Almacenamiento de eventos y estadísticas
+📈 Visualización	Recharts	Gráficas dinámicas y reportes
+🔌 Comunicación	Axios	Peticiones HTTP entre cliente y servidor
 
-### Analyzing the Bundle Size
+🤝 Contribución
+Haz un fork del repositorio
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Crea una rama:
 
-### Making a Progressive Web App
+bash
+Copiar código
+git checkout -b feature/nueva-funcionalidad
+Realiza tus cambios y haz commit
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Envía un Pull Request
 
-### Advanced Configuration
+🧾 Licencia y créditos
+Proyecto académico desarrollado para el
+Instituto Tecnológico de Morelia (ITM) 🏫
+Todos los derechos reservados © 2025.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+<div align="center">
+💡 Desarrollado por estudiantes del ITM
+💻 Hecho con React, Node.js y MySQL
+🌑 Versión Dark UI — Proyecto SAMI 2025
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+</div> ```
