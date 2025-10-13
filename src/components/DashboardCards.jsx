@@ -3,38 +3,77 @@ import api from "../services/api";
 
 export default function DashboardCards() {
   const [stats, setStats] = useState({
-    eventos: 0,
-    participaciones: 0,
-    ausencias: 0,
-    recomendaciones: 0,
+    totalEventos: 0,
+    eventosPasados: 0,
+    eventosFuturos: 0
   });
+
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     api.get("/dashboard/summary")
-      .then(res => setStats(res.data))
-      .catch(err => console.error(err));
+      .then(res => {
+        setStats(res.data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error("Error cargando estadísticas:", err);
+        setLoading(false);
+      });
   }, []);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-      <div className="bg-white shadow rounded-2xl p-5 text-center">
-        <h3 className="text-gray-600 text-sm">Eventos Analizados</h3>
-        <p className="text-3xl font-semibold">{stats.eventos}</p>
+    <div className="dashboard-cards">
+      <div className="section-header">
+        <h2>Resumen de Eventos SAMI</h2>
+        <p>Gestión y control de eventos del sistema</p>
       </div>
+      
+      <div className="cards-grid">
+        {/* Eventos Totales */}
+        <div className="stats-card primary">
+          <div className="card-icon">
+            <span>📊</span>
+          </div>
+          <div className="card-content">
+            <h3>Eventos Totales</h3>
+            <p className="card-value">
+              {loading ? "..." : stats.totalEventos}
+            </p>
+            <span className="card-description">Registrados en la base de datos</span>
+          </div>
+          <div className="card-badge">Total</div>
+        </div>
 
-      <div className="bg-white shadow rounded-2xl p-5 text-center">
-        <h3 className="text-gray-600 text-sm">Participaciones Detectadas</h3>
-        <p className="text-3xl font-semibold">{stats.participaciones}</p>
-      </div>
+        {/* Eventos Pasados */}
+        <div className="stats-card success">
+          <div className="card-icon">
+            <span>✅</span>
+          </div>
+          <div className="card-content">
+            <h3>Eventos Realizados</h3>
+            <p className="card-value">
+              {loading ? "..." : stats.eventosPasados}
+            </p>
+            <span className="card-description">Eventos ya finalizados</span>
+          </div>
+          <div className="card-badge">Completados</div>
+        </div>
 
-      <div className="bg-white shadow rounded-2xl p-5 text-center">
-        <h3 className="text-gray-600 text-sm">Tasa de Ausencias</h3>
-        <p className="text-3xl font-semibold">{stats.ausencias}%</p>
-      </div>
-
-      <div className="bg-white shadow rounded-2xl p-5 text-center">
-        <h3 className="text-gray-600 text-sm">Recomendaciones Activas</h3>
-        <p className="text-3xl font-semibold">{stats.recomendaciones}</p>
+        {/* Eventos Futuros */}
+        <div className="stats-card warning">
+          <div className="card-icon">
+            <span>📅</span>
+          </div>
+          <div className="card-content">
+            <h3>Eventos Próximos</h3>
+            <p className="card-value">
+              {loading ? "..." : stats.eventosFuturos}
+            </p>
+            <span className="card-description">Por ejecutar</span>
+          </div>
+          <div className="card-badge">Próximos</div>
+        </div>
       </div>
     </div>
   );
