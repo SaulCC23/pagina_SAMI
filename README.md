@@ -1,6 +1,7 @@
 <div align="center">
-  <img src="../frontend/assets/ITM.png" alt="Logo ITM" width="140"/>
+  <img width="140" height="215" alt="merida" src="https://github.com/user-attachments/assets/f9ba7133-9e3f-4a42-a2fc-c57ea11a581d" />
 </div>
+
 
 <h1 align="center">🌌 SAMI – Sistema de Análisis y Monitoreo de Impacto</h1>
 
