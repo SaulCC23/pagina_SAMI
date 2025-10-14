@@ -9,8 +9,7 @@ export default function Sidebar({ onMenuChange }) {
     { id: "dashboard", label: "Dashboard", icon: "📊", description: "Vista general del sistema" },
     { id: "eventos", label: "Gestión de Eventos", icon: "📅", description: "Crear y gestionar eventos" },
     { id: "reportes", label: "Reportes", icon: "📈", description: "Reportes y análisis" },
-    { id: "participantes", label: "Participantes", icon: "👥", description: "Gestión de asistentes" },
-    { id: "configuracion", label: "Configuración", icon: "⚙️", description: "Ajustes del sistema" }
+
   ];
 
   const handleItemClick = (itemId) => {

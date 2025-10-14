@@ -13,7 +13,7 @@ export default function ParticipationChart() {
 
   return (
     <div className="bg-white shadow rounded-2xl p-6 mb-8">
-      <h2 className="text-lg font-semibold mb-4">Tendencias de Participación</h2>
+      <h2 className="text-lg font-semibold mb-4">Historial De Eventos</h2>
       <ResponsiveContainer width="100%" height={300}>
         <LineChart data={data}>
           <CartesianGrid strokeDasharray="3 3" />
