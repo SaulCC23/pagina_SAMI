@@ -5,10 +5,15 @@ import "../styles/main.css";
 export default function EventsTable({ refresh }) {
   const [eventos, setEventos] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [mostrarCancelados, setMostrarCancelados] = useState(false);
 
   const fetchEventos = () => {
     setLoading(true);
-    api.get("/eventos")
+    const url = mostrarCancelados 
+      ? "/eventos?incluir_cancelados=true" 
+      : "/eventos";
+    
+    api.get(url)
       .then(res => {
         setEventos(res.data);
         setLoading(false);
@@ -21,32 +26,84 @@ export default function EventsTable({ refresh }) {
 
   useEffect(() => {
     fetchEventos();
-  }, [refresh]);
+  }, [refresh, mostrarCancelados]);
 
-  // Función para formatear números
   const formatNumber = (num) => {
     return new Intl.NumberFormat('es-ES').format(num);
   };
 
-  // Función para determinar si un evento es próximo
-  const isUpcomingEvent = (fecha) => {
+  const isUpcomingEvent = (fecha, estado) => {
+    if (estado === 'cancelado') return false;
     const eventDate = new Date(fecha);
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     return eventDate >= today;
   };
 
+  const handleCancelEvent = (eventId) => {
+    if (window.confirm("¿Estás seguro de que deseas cancelar este evento?\n\nLos eventos cancelados no se mostrarán en los reportes principales.")) {
+      api.put(`/eventos/${eventId}/cancelar`)
+        .then(() => {
+          alert("Evento cancelado exitosamente");
+          fetchEventos();
+        })
+        .catch(err => {
+          console.error(err);
+          alert("Error al cancelar el evento");
+        });
+    }
+  };
+
+  const handleReactivateEvent = (eventId) => {
+    if (window.confirm("¿Estás seguro de que deseas reactivar este evento?")) {
+      api.put(`/eventos/${eventId}/reactivar`)
+        .then(() => {
+          alert("Evento reactivado exitosamente");
+          fetchEventos();
+        })
+        .catch(err => {
+          console.error(err);
+          alert("Error al reactivar el evento");
+        });
+    }
+  };
+
+  const eventosActivos = eventos.filter(e => e.estado !== 'cancelado');
+  const eventosCancelados = eventos.filter(e => e.estado === 'cancelado');
+
   return (
     <div className="table-enhanced">
       <div className="table-header">
         <div className="table-title">
           <h2>Eventos Registrados</h2>
-          <p>Lista completa de eventos en el sistema SAMI</p>
+          <p>
+            {mostrarCancelados 
+              ? "Lista completa de eventos (incluyendo cancelados)" 
+              : "Eventos activos en el sistema SAMI"}
+          </p>
         </div>
-        <div className="table-stats">
-          <span className="stat-badge">
-            Total: {eventos.length} evento{eventos.length !== 1 ? 's' : ''}
-          </span>
+        <div className="table-controls">
+          <div className="table-stats">
+            <span className="stat-badge">
+              Activos: {eventosActivos.length}
+            </span>
+            {eventosCancelados.length > 0 && (
+              <span className="stat-badge canceled">
+                Cancelados: {eventosCancelados.length}
+              </span>
+            )}
+          </div>
+          <div className="toggle-cancelados">
+            <label className="toggle-label">
+              <input 
+                type="checkbox" 
+                checked={mostrarCancelados}
+                onChange={(e) => setMostrarCancelados(e.target.checked)}
+              />
+              <span className="toggle-slider"></span>
+              Mostrar Cancelados
+            </label>
+          </div>
         </div>
       </div>
 
@@ -66,47 +123,19 @@ export default function EventsTable({ refresh }) {
           <table className="enhanced-table">
             <thead>
               <tr>
-                <th className="event-name">
-                  <span className="th-content">
-                    <span className="th-icon">🏷️</span>
-                    Evento
-                  </span>
-                </th>
-                <th className="event-date">
-                  <span className="th-content">
-                    <span className="th-icon">📅</span>
-                    Fecha
-                  </span>
-                </th>
-                <th className="event-location">
-                  <span className="th-content">
-                    <span className="th-icon">📍</span>
-                    Ubicación
-                  </span>
-                </th>
-                <th className="event-participants">
-                  <span className="th-content">
-                    <span className="th-icon">👥</span>
-                    Total
-                  </span>
-                </th>
-                <th className="event-gender">
-                  <span className="th-content">
-                    <span className="th-icon">♀</span>
-                    Mujeres
-                  </span>
-                </th>
-                <th className="event-gender">
-                  <span className="th-content">
-                    <span className="th-icon">♂</span>
-                    Hombres
-                  </span>
-                </th>
+                <th className="event-name">Evento</th>
+                <th className="event-date">Fecha</th>
+                <th className="event-location">Ubicación</th>
+                <th className="event-status">Estado</th>
+                <th className="event-participants">Total</th>
+                <th className="event-gender">Mujeres</th>
+                <th className="event-gender">Hombres</th>
+                <th className="event-actions">Acciones</th>
               </tr>
             </thead>
             <tbody>
               {eventos.map((e) => (
-                <tr key={e.id} className={isUpcomingEvent(e.fecha) ? 'upcoming-event' : ''}>
+                <tr key={e.id} className={`${isUpcomingEvent(e.fecha, e.estado) ? 'upcoming-event' : ''} ${e.estado === 'cancelado' ? 'canceled-event' : ''}`}>
                   <td className="event-name">
                     <div className="event-info">
                       <strong>{e.nombre}</strong>
@@ -125,13 +154,20 @@ export default function EventsTable({ refresh }) {
                           day: 'numeric'
                         })}
                       </span>
-                      {isUpcomingEvent(e.fecha) && (
+                      {isUpcomingEvent(e.fecha, e.estado) && (
                         <span className="upcoming-badge">Próximo</span>
                       )}
                     </div>
                   </td>
                   <td className="event-location">
                     {e.ubicacion || <span className="no-data">No especificado</span>}
+                  </td>
+                  <td className="event-status">
+                    {e.estado === 'cancelado' ? (
+                      <span className="status-badge canceled">Cancelado</span>
+                    ) : (
+                      <span className="status-badge active">Activo</span>
+                    )}
                   </td>
                   <td className="event-participants">
                     <div className="participants-count">
@@ -158,6 +194,25 @@ export default function EventsTable({ refresh }) {
                       )}
                     </div>
                   </td>
+                  <td className="event-actions">
+                    {e.estado === 'cancelado' ? (
+                      <button 
+                        className="btn-reactivate"
+                        onClick={() => handleReactivateEvent(e.id)}
+                        title="Reactivar evento"
+                      >
+                        Reactivar
+                      </button>
+                    ) : (
+                      <button 
+                        className="btn-cancel"
+                        onClick={() => handleCancelEvent(e.id)}
+                        title="Cancelar evento"
+                      >
+                        Cancelar
+                      </button>
+                    )}
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -170,10 +225,13 @@ export default function EventsTable({ refresh }) {
           <div className="footer-info">
             <span>
               Mostrando {eventos.length} evento{eventos.length !== 1 ? 's' : ''}
+              {mostrarCancelados && ` (${eventosActivos.length} activos, ${eventosCancelados.length} cancelados)`}
             </span>
-            <span className="upcoming-count">
-              • {eventos.filter(e => isUpcomingEvent(e.fecha)).length} próximo{eventos.filter(e => isUpcomingEvent(e.fecha)).length !== 1 ? 's' : ''}
-            </span>
+            {!mostrarCancelados && (
+              <span className="upcoming-count">
+                • {eventosActivos.filter(e => isUpcomingEvent(e.fecha, e.estado)).length} próximo{eventosActivos.filter(e => isUpcomingEvent(e.fecha, e.estado)).length !== 1 ? 's' : ''}
+              </span>
+            )}
           </div>
         </div>
       )}

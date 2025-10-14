@@ -6,6 +6,7 @@ export default function EventForm({ onEventAdded }) {
   const [formData, setFormData] = useState({
     nombre: "",
     fecha: "",
+    hora: "",
     ubicacion: "",
     descripcion: "",
   });
@@ -24,6 +25,14 @@ export default function EventForm({ onEventAdded }) {
     return `${year}-${month}-${day}`;
   };
 
+  // Función para obtener la hora actual en formato HH:MM
+  const getCurrentTime = () => {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    return `${hours}:${minutes}`;
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     
@@ -38,11 +47,7 @@ export default function EventForm({ onEventAdded }) {
   const validateForm = () => {
     const errors = {};
     const today = getCurrentDate();
-
-    // Validar que la fecha no sea anterior a hoy
-    if (formData.fecha && formData.fecha < today) {
-      errors.fecha = "No puedes seleccionar una fecha pasada";
-    }
+    const now = getCurrentTime();
 
     // Validar que el nombre no esté vacío
     if (!formData.nombre.trim()) {
@@ -52,6 +57,15 @@ export default function EventForm({ onEventAdded }) {
     // Validar que la fecha no esté vacía
     if (!formData.fecha) {
       errors.fecha = "La fecha del evento es obligatoria";
+    } else if (formData.fecha < today) {
+      errors.fecha = "No puedes seleccionar una fecha pasada";
+    }
+
+    // Validar que la hora no esté vacía
+    if (!formData.hora) {
+      errors.hora = "La hora del evento es obligatoria";
+    } else if (formData.fecha === today && formData.hora < now) {
+      errors.hora = "No puedes seleccionar una hora pasada para el día de hoy";
     }
 
     setFieldErrors(errors);
@@ -73,8 +87,8 @@ export default function EventForm({ onEventAdded }) {
 
     try {
       const res = await api.post("/eventos", formData);
-      setSuccess(res.data.message);
-      setFormData({ nombre: "", fecha: "", ubicacion: "", descripcion: "" });
+      setSuccess(`${res.data.message} - ID: ${res.data.id}, Hora: ${res.data.hora}`);
+      setFormData({ nombre: "", fecha: "", hora: "", ubicacion: "", descripcion: "" });
       setFieldErrors({});
 
       // Actualiza la lista de eventos en el dashboard
@@ -130,13 +144,31 @@ export default function EventForm({ onEventAdded }) {
               value={formData.fecha}
               onChange={handleChange}
               required
-              min={getCurrentDate()} // Esto evita que seleccionen fechas pasadas
+              min={getCurrentDate()}
               className={`form-input ${fieldErrors.fecha ? 'error' : ''}`}
             />
-            {fieldErrors.fecha ? (
+            {fieldErrors.fecha && (
               <span className="field-error">{fieldErrors.fecha}</span>
+            )}
+          </div>
+
+          <div className="form-group enhanced">
+            <label className="form-label">
+              <span className="label-icon">🕐</span>
+              Hora del Evento *
+            </label>
+            <input
+              type="time"
+              name="hora"
+              value={formData.hora}
+              onChange={handleChange}
+              required
+              className={`form-input ${fieldErrors.hora ? 'error' : ''}`}
+            />
+            {fieldErrors.hora ? (
+              <span className="field-error">{fieldErrors.hora}</span>
             ) : (
-              <span className="field-hint"></span>
+              <span className="field-hint">Formato 24 horas (ej: 14:30)</span>
             )}
           </div>
 
@@ -198,7 +230,7 @@ export default function EventForm({ onEventAdded }) {
             <button 
               type="button" 
               onClick={() => {
-                setFormData({ nombre: "", fecha: "", ubicacion: "", descripcion: "" });
+                setFormData({ nombre: "", fecha: "", hora: "", ubicacion: "", descripcion: "" });
                 setFieldErrors({});
                 setError("");
                 setSuccess("");
