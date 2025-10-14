@@ -23,7 +23,7 @@
 
 ## 🚀 Descripción general
 
-**SAMI (Sistema de Análisis y Monitoreo de Impacto)** es una plataforma web que recopila datos de participación estudiantil en ferias educativas.  
+**SAMI (Sistema Autonomo de Monitoreo Inteligente)** es una plataforma web que recopila datos de participación estudiantil en ferias educativas.  
 Conecta con un **Raspberry Pi** equipado con cámara e IA básica para clasificar asistentes (masculino/femenino) y descartar mayores de edad.  
 
 Los datos son enviados automáticamente al sistema web, almacenados en **MySQL** y visualizados mediante un **Dashboard profesional** con tablas y gráficas dinámicas.
@@ -38,7 +38,7 @@ Los datos son enviados automáticamente al sistema web, almacenados en **MySQL**
 - 🧾 **Gestión de eventos:** nombre, fecha, ubicación y descripción.  
 - 👥 **Conteo automático** de participantes (total, hombres, mujeres).  
 - 💾 **Conexión directa a MySQL** mediante API REST.  
-- 🖥️ **Diseño profesional y responsivo** (sin Tailwind, con CSS puro).  
+- 🖥️ **Diseño profesional y responsivo**.  
 
 ---
 
@@ -130,7 +130,7 @@ Envía un Pull Request
 
 🧾 Licencia y créditos
 Proyecto académico desarrollado para el
-Instituto Tecnológico de Morelia (ITM) 🏫
+Instituto Tecnológico de Mérida (ITM) 🏫
 Todos los derechos reservados © 2025.
 
 <div align="center">
@@ -138,4 +138,4 @@ Todos los derechos reservados © 2025.
 💻 Hecho con React, Node.js y MySQL
 🌑 Versión Dark UI — Proyecto SAMI 2025
 
-</div> ```
+</div> 
