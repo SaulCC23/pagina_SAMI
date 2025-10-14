@@ -3,7 +3,7 @@
 </div>
 
 
-<h1 align="center">🌌 SAMI – Sistema de Análisis y Monitoreo de Impacto</h1>
+<h1 align="center">🌌 SAMI – Sistema Autonomo de Monitoreo Inteligente</h1>
 
 <p align="center">
   <em>Plataforma web para recopilar, analizar y visualizar la participación estudiantil en ferias educativas</em>
