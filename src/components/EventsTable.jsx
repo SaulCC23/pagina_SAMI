@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import api from "../services/api";
 import "../styles/main.css";
 
@@ -7,7 +7,7 @@ export default function EventsTable({ refresh }) {
   const [loading, setLoading] = useState(true);
   const [mostrarCancelados, setMostrarCancelados] = useState(false);
 
-  const fetchEventos = () => {
+  const fetchEventos = useCallback(() => {
     setLoading(true);
     const url = mostrarCancelados 
       ? "/eventos?incluir_cancelados=true" 
@@ -22,11 +22,11 @@ export default function EventsTable({ refresh }) {
         console.error(err);
         setLoading(false);
       });
-  };
+  }, [mostrarCancelados]);
 
   useEffect(() => {
     fetchEventos();
-  }, [refresh, mostrarCancelados]);
+  }, [refresh, mostrarCancelados, fetchEventos]);
 
   const formatNumber = (num) => {
     return new Intl.NumberFormat('es-ES').format(num);
@@ -163,11 +163,9 @@ export default function EventsTable({ refresh }) {
                     {e.ubicacion || <span className="no-data">No especificado</span>}
                   </td>
                   <td className="event-status">
-                    {e.estado === 'cancelado' ? (
-                      <span className="status-badge canceled">Cancelado</span>
-                    ) : (
-                      <span className="status-badge active">Activo</span>
-                    )}
+                    <span className={`status-simple ${e.estado === 'cancelado' ? 'canceled' : 'active'}`}>
+                      {e.estado === 'cancelado' ? 'CANCELADO' : 'ACTIVO'}
+                    </span>
                   </td>
                   <td className="event-participants">
                     <div className="participants-count">

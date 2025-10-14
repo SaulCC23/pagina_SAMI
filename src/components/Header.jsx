@@ -1,7 +1,7 @@
 import "../styles/main.css";
 import logo from "../assets/ITM.png";
 
-export default function Header() {
+export default function Header({ darkMode, onToggleDarkMode }) {
   return (
     <header className="header">
       <div className="header-content">
