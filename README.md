@@ -1,8 +1,9 @@
 <div align="center">
-  <img src="../frontend/assets/ITM.png" alt="Logo ITM" width="140"/>
+  <img width="140" height="215" alt="merida" src="https://github.com/user-attachments/assets/f9ba7133-9e3f-4a42-a2fc-c57ea11a581d" />
 </div>
 
-<h1 align="center">🌌 SAMI – Sistema de Análisis y Monitoreo de Impacto</h1>
+
+<h1 align="center">🌌 SAMI – Sistema Autonomo de Monitoreo Inteligente</h1>
 
 <p align="center">
   <em>Plataforma web para recopilar, analizar y visualizar la participación estudiantil en ferias educativas</em>
@@ -22,7 +23,7 @@
 
 ## 🚀 Descripción general
 
-**SAMI (Sistema de Análisis y Monitoreo de Impacto)** es una plataforma web que recopila datos de participación estudiantil en ferias educativas.  
+**SAMI (Sistema Autonomo de Monitoreo Inteligente)** es una plataforma web que recopila datos de participación estudiantil en ferias educativas.  
 Conecta con un **Raspberry Pi** equipado con cámara e IA básica para clasificar asistentes (masculino/femenino) y descartar mayores de edad.  
 
 Los datos son enviados automáticamente al sistema web, almacenados en **MySQL** y visualizados mediante un **Dashboard profesional** con tablas y gráficas dinámicas.
@@ -37,7 +38,7 @@ Los datos son enviados automáticamente al sistema web, almacenados en **MySQL**
 - 🧾 **Gestión de eventos:** nombre, fecha, ubicación y descripción.  
 - 👥 **Conteo automático** de participantes (total, hombres, mujeres).  
 - 💾 **Conexión directa a MySQL** mediante API REST.  
-- 🖥️ **Diseño profesional y responsivo** (sin Tailwind, con CSS puro).  
+- 🖥️ **Diseño profesional y responsivo**.  
 
 ---
 
@@ -129,7 +130,7 @@ Envía un Pull Request
 
 🧾 Licencia y créditos
 Proyecto académico desarrollado para el
-Instituto Tecnológico de Morelia (ITM) 🏫
+Instituto Tecnológico de Mérida (ITM) 🏫
 Todos los derechos reservados © 2025.
 
 <div align="center">
@@ -137,4 +138,4 @@ Todos los derechos reservados © 2025.
 💻 Hecho con React, Node.js y MySQL
 🌑 Versión Dark UI — Proyecto SAMI 2025
 
-</div> ```
+</div> 
