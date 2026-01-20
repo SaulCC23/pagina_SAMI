@@ -8,7 +8,7 @@ export default function Sidebar({ onMenuChange, darkMode, onToggleDarkMode }) {
   const [isEventModalOpen, setIsEventModalOpen] = useState(false);
 
   const menuItems = [
-    { id: "dashboard", label: "Dashboard", icon: "📊", description: "Vista general del sistema" },
+  
     { id: "eventos", label: "Gestión de Eventos", icon: "📅", description: "Crear y gestionar eventos" },
   ];
 
