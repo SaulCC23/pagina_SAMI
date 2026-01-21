@@ -168,7 +168,7 @@ export default function EventForm({ onEventAdded }) {
             {fieldErrors.hora ? (
               <span className="field-error">{fieldErrors.hora}</span>
             ) : (
-              <span className="field-hint">Formato 12 horas (ej: 2:30)</span>
+              <span className="field-hint">Formato 24 horas (ej: 14:30)</span>
             )}
           </div>
 

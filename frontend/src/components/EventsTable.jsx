@@ -1,5 +1,4 @@
 import { useEffect, useState, useCallback } from "react";
-
 import api from "../services/api";
 import "../styles/main.css";
 
@@ -33,24 +32,12 @@ export default function EventsTable({ refresh }) {
     return new Intl.NumberFormat('es-ES').format(num);
   };
 
-  const isUpcomingEvent = (fecha, hora, estado) => {
+  const isUpcomingEvent = (fecha, estado) => {
     if (estado === 'cancelado') return false;
-    
-    const now = new Date();
     const eventDate = new Date(fecha);
-    
-    // Si la fecha es futura (mañana o después), es próximo
-    if (eventDate > now && eventDate.getDate() !== now.getDate()) return true;
-
-    // Si es HOY, comparar hora
-    if (eventDate.toDateString() === now.toDateString()) {
-       if (!hora) return true; // Si no hay hora, asumir próximo por defecto
-       const [hours, minutes] = hora.split(':');
-       eventDate.setHours(parseInt(hours), parseInt(minutes), 0);
-       return eventDate > now;
-    }
-
-    return false; // Fecha pasada
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return eventDate >= today;
   };
 
   const handleCancelEvent = (eventId) => {
@@ -84,8 +71,6 @@ export default function EventsTable({ refresh }) {
   const eventosActivos = eventos.filter(e => e.estado !== 'cancelado');
   const eventosCancelados = eventos.filter(e => e.estado === 'cancelado');
 
-
-
   return (
     <div className="table-enhanced">
       <div className="table-header">
@@ -108,7 +93,6 @@ export default function EventsTable({ refresh }) {
               </span>
             )}
           </div>
-
           <div className="toggle-cancelados">
             <label className="toggle-label">
               <input 
@@ -131,7 +115,7 @@ export default function EventsTable({ refresh }) {
           </div>
         ) : eventos.length === 0 ? (
           <div className="empty-state">
-            <div className="empty-icon">!</div>
+            <div className="empty-icon">📊</div>
             <h3>No hay eventos registrados</h3>
             <p>Los eventos que agregues aparecerán aquí</p>
           </div>
@@ -151,7 +135,7 @@ export default function EventsTable({ refresh }) {
             </thead>
             <tbody>
               {eventos.map((e) => (
-                <tr key={e.id} className={`${isUpcomingEvent(e.fecha, e.hora, e.estado) ? 'upcoming-event' : ''} ${e.estado === 'cancelado' ? 'canceled-event' : ''}`}>
+                <tr key={e.id} className={`${isUpcomingEvent(e.fecha, e.estado) ? 'upcoming-event' : ''} ${e.estado === 'cancelado' ? 'canceled-event' : ''}`}>
                   <td className="event-name">
                     <div className="event-info">
                       <strong>{e.nombre}</strong>
@@ -170,7 +154,7 @@ export default function EventsTable({ refresh }) {
                           day: 'numeric'
                         })}
                       </span>
-                      {isUpcomingEvent(e.fecha, e.hora, e.estado) && (
+                      {isUpcomingEvent(e.fecha, e.estado) && (
                         <span className="upcoming-badge">Próximo</span>
                       )}
                     </div>
@@ -209,7 +193,6 @@ export default function EventsTable({ refresh }) {
                     </div>
                   </td>
                   <td className="event-actions">
-
                     {e.estado === 'cancelado' ? (
                       <button 
                         className="btn-reactivate"
