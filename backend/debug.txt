@@ -1,0 +1,68 @@
+INIT SYNC
+[2026-01-04T00:22:40.467Z] 🔄 Iniciando sincronización. Eventos: 19, Datos JSON: 18
+[2026-01-04T00:22:40.470Z] ⚠️ Evento activo ID 2 (undefined) sin datos en JSON. Index: 8
+[2026-01-04T00:22:40.471Z] ⚠️ Evento activo ID 3 (undefined) sin datos en JSON. Index: 12
+[2026-01-04T00:22:40.481Z] ✅ Estadísticas actualizadas evento 19 (undefined) con Index 18: Tot=150
+[2026-01-04T00:36:32.920Z] 📂 Procesando 2 archivos de cámara...
+[2026-01-04T00:36:32.934Z] ℹ️ Archivo camera_data.json: No hay eventos activos el 2026-01-04.
+[2026-01-04T00:36:32.937Z] ℹ️ Archivo camera_data_2.json: No hay eventos activos el 2026-01-04.
+[2026-01-04T00:37:03.299Z] 📂 Procesando 2 archivos de cámara...
+[2026-01-04T00:37:03.310Z] ℹ️ Archivo camera_data.json: No hay eventos activos el 2026-01-04.
+[2026-01-04T00:37:03.315Z] ℹ️ Archivo camera_data_2.json: No hay eventos activos el 2026-01-04.
+[2026-01-04T00:38:37.579Z] 📂 Procesando 2 archivos de cámara...
+[2026-01-04T00:38:37.686Z] ✅ Archivo camera_data.json (6:35:52 p.m.) asignado a "feria de profeciones 2026-1" (Hora: 18:20:00).
+[2026-01-04T00:38:37.691Z] ✅ Archivo camera_data_2.json (6:35:55 p.m.) asignado a "feria de profeciones 2026-1" (Hora: 18:20:00).
+[2026-01-04T00:38:37.696Z]    -> Datos guardados en BD para "feria de profeciones 2026-1": Total=150
+[2026-01-04T00:38:37.699Z]    -> Datos guardados en BD para "feria de profeciones 2026-1": Total=100
+[2026-01-04T00:42:34.179Z] 📂 Procesando 2 archivos de cámara...
+[2026-01-04T00:42:34.217Z] ✅ Archivo camera_data.json (6:35:52 p.m.) asignado a "feria de profeciones 2026-1" (Hora: 18:20:00).
+[2026-01-04T00:42:34.221Z] ✅ Archivo camera_data_2.json (6:35:55 p.m.) asignado a "feria de profeciones 2026-1" (Hora: 18:20:00).
+[2026-01-04T00:42:34.224Z]    -> Datos guardados en BD para "feria de profeciones 2026-1": Total=150
+[2026-01-04T00:42:34.227Z]    -> Datos guardados en BD para "feria de profeciones 2026-1": Total=100
+[2026-01-04T00:44:32.736Z] 📂 Procesando 2 archivos de cámara...
+[2026-01-04T00:44:32.741Z] 🔒 El evento "feria de profeciones 2026-1" YA tiene estadísticas. Omitiendo archivo camera_data.json para proteger datos existentes.
+[2026-01-04T00:44:32.742Z] 🔒 El evento "feria de profeciones 2026-1" YA tiene estadísticas. Omitiendo archivo camera_data_2.json para proteger datos existentes.
+[2026-01-04T00:46:28.342Z] 📂 Procesando 2 archivos de cámara...
+[2026-01-04T00:46:28.351Z] 🔒 El evento "feria de profeciones 2026-1" YA tiene estadísticas. Omitiendo archivo camera_data_2.json para proteger datos existentes.
+[2026-01-04T00:46:28.353Z] 🔒 El evento "feria de profeciones 2026-1" YA tiene estadísticas. Omitiendo archivo camera_data_large.json para proteger datos existentes.
+[2026-01-04T00:51:43.326Z] 📂 Procesando 2 archivos de cámara...
+[2026-01-04T00:51:43.331Z] 🔒 El evento "feria de profeciones 2026-1" YA tiene estadísticas. Omitiendo archivo camera_data_2.json para proteger datos existentes.
+[2026-01-04T00:51:43.347Z] ✅ Archivo camera_data_large.json (7:00:00 p.m.) asignado a "prueba 10" (Hora: 19:32:00).
+[2026-01-04T00:51:43.350Z]    -> 💾 Datos guardados exitosamente para "prueba 10": Total=500
+[2026-01-04T00:54:21.952Z] 📂 Procesando 2 archivos de cámara...
+[2026-01-04T00:54:21.960Z] 🔒 El evento "feria de profeciones 2026-1" YA tiene estadísticas. Omitiendo archivo camera_data_2.json para proteger datos existentes.
+[2026-01-04T00:54:21.961Z] 🔒 El evento "prueba 10" YA tiene estadísticas. Omitiendo archivo camera_data_large.json para proteger datos existentes.
+[2026-01-04T00:54:57.919Z] 📂 Procesando 2 archivos de cámara...
+[2026-01-04T00:54:57.926Z] 🔒 El evento "feria de profeciones 2026-1" YA tiene estadísticas. Omitiendo archivo camera_data_2.json para proteger datos existentes.
+[2026-01-04T00:54:57.927Z] 🔒 El evento "prueba 10" YA tiene estadísticas. Omitiendo archivo camera_data_large.json para proteger datos existentes.
+[2026-01-04T01:36:16.645Z] 📂 Procesando 2 archivos de cámara...
+[2026-01-04T01:36:16.657Z] 🔒 El evento "feria de profeciones 2026-1" YA tiene estadísticas. Omitiendo archivo camera_data_2.json para proteger datos existentes.
+[2026-01-04T01:36:16.659Z] 🔒 El evento "prueba 10" YA tiene estadísticas. Omitiendo archivo camera_data_large.json para proteger datos existentes.
+[2026-01-04T01:47:06.260Z] 📂 Procesando 2 archivos de cámara...
+[2026-01-04T01:47:06.269Z] 🔒 El evento "feria de profeciones 2026-1" YA tiene estadísticas. Omitiendo archivo camera_data_2.json para proteger datos existentes.
+[2026-01-04T01:47:06.271Z] 🔒 El evento "prueba 10" YA tiene estadísticas. Omitiendo archivo camera_data_large.json para proteger datos existentes.
+[2026-01-04T01:47:31.088Z] 📂 Procesando 2 archivos de cámara...
+[2026-01-04T01:47:31.152Z] ✅ Archivo camera_data_2.json (6:35:55 p.m.) asignado a "prueba 11" (Hora: 20:30:00).
+[2026-01-04T01:47:31.154Z] ✅ Archivo camera_data_large.json (7:00:00 p.m.) asignado a "prueba 11" (Hora: 20:30:00).
+[2026-01-04T01:47:31.159Z]    -> 💾 Datos guardados exitosamente para "prueba 11": Total=100
+[2026-01-04T01:47:31.162Z]    -> ❌ Error BD: Error: Duplicate entry '21' for key 'unique_evento_estadistica'
+[2026-01-04T02:01:59.218Z] 📂 Procesando 2 archivos de cámara...
+[2026-01-04T02:01:59.311Z] ✅ [camera_data_2.json] Datos sincronizados con evento #21
+[2026-01-04T02:01:59.325Z] ✅ [camera_data_large.json] Datos sincronizados con evento #21
+[2026-01-04T02:02:18.586Z] 📂 Procesando 2 archivos de cámara...
+[2026-01-04T02:02:18.610Z] ℹ️ [camera_data_2.json] Ignorado: No hay evento activo el 2026-01-03
+[2026-01-04T02:02:18.632Z] ℹ️ [camera_data_large.json] Ignorado: No hay evento activo el 2026-01-03
+[2026-01-04T02:04:39.373Z] 📂 Procesando 2 archivos de cámara...
+[2026-01-04T02:04:39.380Z] ✅ [camera_data_2.json] Datos sincronizados con evento #19
+[2026-01-04T02:04:39.384Z] ✅ [camera_data_large.json] Datos sincronizados con evento #19
+[2026-01-04T02:19:30.103Z] 📂 Procesando 2 archivos de cámara...
+[2026-01-04T02:19:30.111Z] 🔒 El evento "feria de profeciones 2026-1" YA tiene estadísticas. Omitiendo archivo camera_data_2.json.
+[2026-01-04T02:19:30.116Z] 🔒 El evento "prueba 10" YA tiene estadísticas. Omitiendo archivo camera_data_large.json.
+[2026-01-04T02:21:22.705Z] 📂 Procesando 3 archivos de cámara...
+[2026-01-04T02:21:22.715Z] 🔒 El evento "feria de profeciones 2026-1" YA tiene estadísticas. Omitiendo archivo camera_data_2.json.
+[2026-01-04T02:21:22.718Z] 🔒 El evento "prueba 10" YA tiene estadísticas. Omitiendo archivo camera_data_large.json.
+[2026-01-04T02:21:22.727Z] ✅ Archivo fpruebaFinal.json guardado en BD para "prueba de json final": Total=400
+[2026-01-04T02:24:35.404Z] 📂 Procesando 3 archivos de cámara...
+[2026-01-04T02:24:35.410Z] 🔒 El evento "feria de profeciones 2026-1" YA tiene estadísticas. Omitiendo archivo camera_data_2.json.
+[2026-01-04T02:24:35.415Z] 🔒 El evento "prueba 10" YA tiene estadísticas. Omitiendo archivo camera_data_large.json.
+[2026-01-04T02:24:35.420Z] 🔒 El evento "prueba de json final" YA tiene estadísticas. Omitiendo archivo fpruebaFinal.json.
