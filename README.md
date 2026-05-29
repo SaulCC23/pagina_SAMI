@@ -144,7 +144,7 @@ npm start
 
 ##  Licencia y créditos
 
-Proyecto académico desarrollado para el **Instituto Tecnológico de Mérida (ITM)** 🏫  
+Proyecto académico desarrollado para el **Instituto Tecnológico de Mérida (ITM)**   
 Todos los derechos reservados © 2025.
 
 <div align="center">
